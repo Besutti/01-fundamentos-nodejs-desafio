@@ -60,23 +60,19 @@ export const routes = [
         path : buildRoutePath('/tasks/:id'),
         handler: (req, res) => {
             const { id } = req.params
-            const { title, description } = req.body
-             
-            
-            // database.update('tasks', id, {
-            //     title,
-            //     description,
-            // })       
-            
-            const data = {
-                title: title ? {title} : , 
-                description
-            }
+            const { title, description } = req.body            
 
-            tenho que pensar aqui
+            const task = database.select('tasks', {
+                id
+            })
             
+            if (task.length === 0 ) {
+                return res.writeHead(401).end(JSON.stringify("Não encontrado"))
+            }            
+                                             
             database.update('tasks', id, {
-                ... data
+                title: title ?? title , 
+                description: description ?? description,
             })
 
             return res.writeHead(204).end()
