@@ -26,6 +26,7 @@ export class DataBase {
         console.log(search)
 
         if (search) {
+            console.log('chegou ate aqui')
 
             data = data.filter(row => {
                 // a variave search é um objeto, entao vamos ter que percorer o mesmo 

@@ -12,7 +12,12 @@ export const routes = [
         path: buildRoutePath('/tasks'),
         handler: (req, res) => {
             
-            const { search } = req.query            
+            const { search } = req.query
+
+            console.log(req.query)
+            console.log('teste tchelo')
+            console.log(search)
+            console.log('outro teste')
 
             const tasks = database.select('tasks', search ? {
                 title: search,
@@ -34,12 +39,12 @@ export const routes = [
 
             if (!title){
                 return res.writeHead(400)
-                    .end( JSON.stringify({"message" : "titulo não informado"}))
+                    .end( JSON.stringify({"message" : "Título não informado"}))
             }
 
             if (!description) {
-                return res.writeHead(400
-                    .end( JSON.stringify({"message" : "descrição não informada"})))
+                return res.writeHead(400)
+                    .end( JSON.stringify({"message" : "Descrição não informada"}))
             }
     
             const task = {
